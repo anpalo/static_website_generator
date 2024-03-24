@@ -8,12 +8,11 @@ from textnode import (
     text_type_link,
 )
 
-print("\n\nmain.py working...\n\n\n\n\n\n\n\n")
+print("\n\nmain.py working...\n\n")
 
 def main():
     tn = TextNode("a", text_type_bold, "https://www.boot.dev")
-    html_node = tn.text_node_to_html_node()
-    print(html_node)
+    print(f"{tn}\n\n\n")
 
          
     
