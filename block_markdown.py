@@ -60,7 +60,6 @@ def text_to_child(text):
         children.append(html_child)
     return children
 
-
 def code_block_to_html(code_block):
     split_block = code_block.split("\n")
     remove_first_last = split_block[1:-1]
@@ -69,8 +68,6 @@ def code_block_to_html(code_block):
     code_node = ParentNode(tag="code", children=child_text)
     code_node_parent = ParentNode(tag="pre", children=[code_node])
     return code_node_parent
-
-
 
 def quote_block_to_html(quote_block):
     removed_quote_marker = re.sub(r"(^>)", '', quote_block, flags=re.MULTILINE)  # use ^ to inspect the first character of each new line. ^> to match any > at the start of the line
@@ -144,7 +141,6 @@ def markdown_to_html_node(markdown):
     div_node = ParentNode(tag="div", children=html_nodes) # wrap a div tag around the other stored nodes
     return div_node.to_html()
 
-        
 
            
            

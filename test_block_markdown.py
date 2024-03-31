@@ -1,5 +1,5 @@
 import unittest
-from block_markdown import markdown_to_blocks, block_to_block, markdown_to_html_node
+from block_markdown import markdown_to_blocks, block_to_block, markdown_to_html_node, extract_title
 from block_markdown import(    
     block_type_paragraph,
     block_type_heading,
@@ -97,10 +97,7 @@ This is the same paragraph on a new line
         expected_html = "<div><h1>This is a <b>header</b></h1><p>This is a paragraph with <i>italic</i> text and <code>code</code> here This is the same paragraph on a new line</p><ul><li>This is a list</li><li>with items</li></ul></div>"
         actual_html = markdown_to_html_node(text)
         self.assertEqual(actual_html, expected_html)
-   
 
-
-
-
+ 
 if __name__ == "__main__":
     unittest.main()

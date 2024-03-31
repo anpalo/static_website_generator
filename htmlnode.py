@@ -1,4 +1,11 @@
+self_closing_tags = [
+    "img", 
+    "br", 
+    "input"
+]
+
 class HTMLNode:
+
 
     def __init__(self, tag=None, value=None, children=None, props=None):
         self.tag = tag
@@ -18,12 +25,22 @@ class HTMLNode:
     
     
 class LeafNode(HTMLNode):
+    self_closing_tags = [
+    "img", 
+    "br", 
+    "input"
+]
     def __init__(self, tag=None, value=None, props=None):
         super().__init__(tag=tag, value=value, props=props)
 
+
     def to_html(self):
-        if not self.value:
-            raise ValueError
+        if self.tag in LeafNode.self_closing_tags:
+            props_to_html = self.props_to_html()
+            return f'<{self.tag} {props_to_html} />'
+
+        if self.value is None or self.value == '':
+            raise ValueError(f"LeafNode with tag '{self.tag}' has no value")
         if self.tag is None:
             return str(self.value)
         if self.props:
@@ -45,6 +62,7 @@ class ParentNode(HTMLNode):
             raise ValueError('children expects argument(s)')
         new_string = f"<{self.tag}>"
         for node in self.children:
+            print("Current node being processed:", node)
             new_node = node.to_html()
             new_string += new_node    
         final_string = f"{new_string}</{self.tag}>"

@@ -1,21 +1,24 @@
-from textnode import (
-    TextNode, 
-    text_type_text,
-    text_type_bold,
-    text_type_italic,
-    text_type_code,
-    text_type_image,
-    text_type_link,
-)
+from copy_static import copy_directory
+from generate_page import generate_pages_recursively
+import os
+import shutil
 
-print("\n\nmain.py working...\n\n")
+static_path = "src/static"
+public_path = "src/public"
+from_path = "src/content"  # Adjust if your directory structure is different
+template_path = "src/template.html"  # Make sure this path is correct based on your project structure
+dest_path = "src/public"  # This is the target file path for the generated HTML
 
 def main():
-    tn = TextNode("a", text_type_bold, "https://www.boot.dev")
-    print(f"{tn}\n\n\n")
 
-         
-    
+    shutil.rmtree(public_path, ignore_errors=True)
+    os.makedirs(public_path, exist_ok=True)
+    copy_directory(static_path, public_path)
+   
 
+    generate_pages_recursively(from_path,template_path,dest_path)
+   
+if __name__ == "__main__":         
+    main()
 
-main()
+print("Content generation completed, index.html and other content should now exist in the 'public' directory.")

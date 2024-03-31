@@ -29,6 +29,12 @@ class TestHTMLNode(unittest.TestCase):
         node1 = ParentNode(tag="p", children=children_test)
         self.assertEqual(node1.to_html(), '<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>')
 
+        
+    def test_to_html_self_closing_tag(self):
+        node = LeafNode(tag="img", value=None, props={"src": "/path/to/image.jpg", "alt": "An image"})
+        self.assertEqual(node.to_html(), '<img src="/path/to/image.jpg" alt="An image" />')
+
+
 
 if __name__ == "__main__":
     unittest.main()
