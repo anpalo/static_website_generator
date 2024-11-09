@@ -3,11 +3,12 @@ from generate_page import generate_pages_recursively
 import os
 import shutil
 
+# Make sure the paths are correct based on your project structure and naming system
 static_path = "src/static"
 public_path = "src/public"
-from_path = "src/content"  # Adjust if your directory structure is different
-template_path = "src/template.html"  # Make sure this path is correct based on your project structure
-dest_path = "src/public"  # This is the target file path for the generated HTML
+from_path = "src/content"  
+template_path = "src/template.html"  
+dest_path = "src/public"  # This is the target file path
 
 def main():
 
